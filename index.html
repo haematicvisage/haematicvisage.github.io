@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Sorry Reas 😭</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 600px;
+      animation: pop 0.8s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #e63946;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #333;
+      margin: 8px 0;
+    }
+
+    .emoji {
+      font-size: 2rem;
+      margin: 15px 0;
+    }
+
+    .question {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #222;
+    }
+
+    .buttons {
+      margin-top: 15px;
+    }
+
+    button {
+      font-size: 1.1rem;
+      padding: 12px 24px;
+      margin: 10px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .yes {
+      background: #90ee90;
+      color: #222;
+      font-weight: bold;
+    }
+
+    .no {
+      background: #ff6961;
+      color: white;
+      font-weight: bold;
+    }
+
+    #response {
+      margin-top: 25px;
+      font-size: 1.3rem;
+      color: #333;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 1.5rem;
+      animation: floatUp 6s infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 0.8; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Reas… 😭</h1>
+    <p>I messed up, and I’m really sorry 🥺</p>
+    <p>Please forgive me 💕</p>
+    <p>Here, take this flower 🌷 just for you</p>
+    <div class="emoji">🌷💖</div>
+
+    <div class="question">Do you forgive me? (please say yes)</div>
+
+    <div class="buttons">
+      <button class="yes" onclick="forgive()">Yes 💕</button>
+      <button class="no" onclick="noForgive()">No 😡</button>
+    </div>
+
+    <p id="response"></p>
+  </div>
+
+  <!-- Floating hearts generator -->
+  <script>
+    function forgive() {
+      document.getElementById("response").innerText = "Yayyy 🥰 Thank you Reas!! 💖🌷";
+      launchConfetti();
+    }
+
+    function noForgive() {
+      document.getElementById("response").innerText = "Nooo 😭 I’ll bring even more flowers 🌷🌷🌷 for you!";
+    }
+
+    // Floating hearts effect
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.innerText = "💖";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 800);
+
+    // Simple confetti effect when forgiven
+    function launchConfetti() {
+      for (let i = 0; i < 30; i++) {
+        const conf = document.createElement("div");
+        conf.innerText = "🌷";
+        conf.style.position = "absolute";
+        conf.style.left = Math.random() * 100 + "vw";
+        conf.style.top = Math.random() * 100 + "vh";
+        conf.style.fontSize = "1.5rem";
+        conf.style.animation = "floatUp 4s forwards";
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 4000);
+      }
+    }
+  </script>
+</body>
+</html>
