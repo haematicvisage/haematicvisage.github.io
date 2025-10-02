@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry Pookie 😭</title>
+<style>
+  body {
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#ffdde1,#ee9ca7);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    overflow:hidden;
+  }
+  .card {
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    text-align:center;
+    max-width:600px;
+    animation:pop 0.8s ease;
+  }
+  @keyframes pop {0%{transform:scale(0.8);opacity:0}100%{transform:scale(1);opacity:1}}
+  h1 {font-size:2rem;color:#e63946;margin-bottom:10px;}
+  p {font-size:1.2rem;color:#333;margin:8px 0;}
+  .emoji {font-size:2rem;margin:15px 0;}
+  .poem {font-size:1.1rem;color:#555;font-style:italic;margin:15px 0;min-height:50px;}
+  .question {font-size:1.3rem;font-weight:bold;margin-top:20px;color:#222; min-height:30px;}
+  .buttons {margin-top:15px; display:flex; flex-wrap:wrap; justify-content:center;}
+  button {
+    font-size:1.1rem;
+    padding:12px 24px;
+    margin:10px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  button:hover {transform:scale(1.1);}
+  .view {background:#f5c518;color:#222;font-weight:bold;}
+  .yes {background:#90ee90;color:#222;font-weight:bold;}
+  .no {background:#ff6961;color:white;font-weight:bold;}
+  .hug {background:#ffb6b9;color:#222;font-weight:bold;}
+  #response {margin-top:25px;font-size:1.3rem;color:#333; min-height:30px;}
+  .heart {position:absolute;bottom:-20px;font-size:1.5rem;animation:floatUp 6s infinite;opacity:0.7;}
+  @keyframes floatUp {0%{transform:translateY(0);opacity:0.8}100%{transform:translateY(-100vh);opacity:0}}
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Heyy there… Pookie, I'm so sorry 😭😭😭</h1>
+    <div class="buttons">
+      <button class="view" id="viewMessageBtn">View Encrypted Message 🔒</button>
+    </div>
+    <div class="poem" id="poem"></div>
+    <div class="question" id="forgiveQuestion"></div>
+    <div class="buttons" id="forgiveButtons" style="display:none;">
+      <button class="yes" onclick="forgive()">Yes 💕</button>
+      <button class="no" onclick="noForgive()">No 😡</button>
+    </div>
+    <div class="question" id="hugQuestion"></div>
+    <div class="buttons" id="hugButtonDiv" style="display:none;">
+      <button class="hug" onclick="sendHug()">Grab me 🤗</button>
+    </div>
+    <p id="response"></p>
+  </div>
+
+<script>
+  const poemText = "I brought this flower, tender and true,\nA simple apology, Pookie, for you.";
+  const poemEl = document.getElementById("poem");
+  const viewBtn = document.getElementById("viewMessageBtn");
+  const forgiveButtons = document.getElementById("forgiveButtons");
+  const forgiveQuestion = document.getElementById("forgiveQuestion");
+  const hugQuestion = document.getElementById("hugQuestion");
+  const hugButtonDiv = document.getElementById("hugButtonDiv");
+  const response = document.getElementById("response");
+
+  function typeWriter(text, i=0, callback=null){
+    if(i<text.length){
+      poemEl.innerHTML += text.charAt(i)==='\n'?'<br>':text.charAt(i);
+      setTimeout(()=>typeWriter(text,i+1,callback),50);
+    } else if(callback) callback();
+  }
+
+  viewBtn.onclick = function(){
+    viewBtn.style.display='none';
+    typeWriter(poemText,0,()=>{ 
+      forgiveQuestion.innerText = "Do you forgive me? (please say yes)";
+      forgiveButtons.style.display='flex';
+    });
+  }
+
+  function forgive(){
+    response.innerText = "Yayyy 🥰 Thank you Pookie!! 💖🌷";
+    hugQuestion.innerText = "Do you accept my huggie?";
+    hugButtonDiv.style.display='flex';
+    launchConfetti();
+  }
+
+  function noForgive(){
+    response.innerText = "Nooo 😭 I’ll bring even more flowers 🌷🌷🌷 for you!";
+  }
+
+  function sendHug(){
+    response.innerText = "Thankuuu 🥰💖";
+    launchHearts();
+  }
+
+  function launchHearts(){
+    for(let i=0;i<30;i++){
+      const heart = document.createElement("div");
+      heart.className="heart";
+      heart.style.left=Math.random()*100+"vw";
+      heart.innerText="💖";
+      heart.style.animationDuration=(3+Math.random()*3)+"s";
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(),6000);
+    }
+  }
+
+  function launchConfetti(){
+    for(let i=0;i<30;i++){
+      const conf = document.createElement("div");
+      conf.innerText="🌷";
+      conf.style.position="absolute";
+      conf.style.left=Math.random()*100+"vw";
+      conf.style.top=Math.random()*100+"vh";
+      conf.style.fontSize="1.5rem";
+      conf.style.animation="floatUp 4s forwards";
+      document.body.appendChild(conf);
+      setTimeout(()=>conf.remove(),4000);
+    }
+  }
+</script>
+</body>
+</html>
