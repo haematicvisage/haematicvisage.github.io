@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Yo Pookie, I’m Sorry 💔</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffe4ec, #e0c3fc);
+      margin: 0;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      max-width: 600px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2rem;
+      margin: 8px 0;
+    }
+    .emoji {
+      font-size: 2rem;
+      margin: 10px 0;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    button {
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+    .yes {
+      background: #90ee90;
+    }
+    .no {
+      background: #ff6961;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Yo Pookie… 😭</h1>
+    <p>I’m so sorry… please forgive me 🥺</p>
+    <p>Here, take this flower 🌷 and chocolate 🍫</p>
+    <div class="emoji">🌷🍫💖</div>
+    <div class="buttons">
+      <button class="yes" onclick="forgive()">Yes 💕</button>
+      <button class="no" onclick="noForgive()">No 😡</button>
+    </div>
+    <p id="response" style="margin-top:20px;font-size:1.3rem;color:#333;"></p>
+  </div>
+
+  <script>
+    function forgive() {
+      document.getElementById("response").innerText = "Yayyy 🥰 Thank you pookie!! 💖💐🍫";
+    }
+    function noForgive() {
+      document.getElementById("response").innerText = "Nooo 😭 Please reconsider… I’ll bring more flowers 🌷🌷🍫🍫";
+    }
+  </script>
+</body>
+</html>
